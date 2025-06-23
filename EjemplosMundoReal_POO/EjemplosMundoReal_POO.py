@@ -1,6 +1,3 @@
-# Ejemplo de POO - Reservas de Hotel
-# Hecho por un estudiante
-
 # Clase que representa una habitación del hotel
 class Habitacion:
     def __init__(self, numero, tipo, precio):
