@@ -1,0 +1,3 @@
+Nombre: Jack
+Raza: Poodle
+Color: Blanco
