@@ -29,7 +29,8 @@ def mostrar_menu():
     '4': 'Deber - Semana 5/Tipos de datos, Identificadores.py',
     '5': 'Clases_Poo_Semana6/Clases, objetos, herencia, encapsulamiento y polimorfismo.py',
     '6': 'Construcores y destructores - semana 7/Constructores y Destructores - Deber.py',
-        '6.1': 'Construcores y destructores - semana 7/perro.txt'
+        '6.1': 'Construcores y destructores - semana 7/perro.txt',
+    '7': 'Gestion de inventarios/Gestion de inventarios semana 9.py'
         # Agrega aquí el resto de las rutas de los scripts
     }
 
