@@ -1,0 +1,154 @@
+import json
+import os
+
+# Clase para un producto/artículo
+class Articulo:
+    def __init__(self, codigo, nombre, stock, precio):
+        self.codigo = codigo
+        self.nombre = nombre
+        self.stock = stock
+        self.precio = precio
+
+    def mostrar(self):
+        return f"[{self.codigo}] {self.nombre} -> {self.stock} unidades, ${self.precio}"
+
+    def to_dict(self):
+        """Convierte el artículo en un diccionario para guardarlo en JSON"""
+        return {
+            "codigo": self.codigo,
+            "nombre": self.nombre,
+            "stock": self.stock,
+            "precio": self.precio
+        }
+
+    @staticmethod
+    def from_dict(data):
+        """Crea un artículo desde un diccionario"""
+        return Articulo(data["codigo"], data["nombre"], data["stock"], data["precio"])
+
+# Clase para manejar el inventario con persistencia
+class SistemaInventario:
+    def __init__(self, archivo="inventario.txt"):
+        self.lista = []
+        self.archivo = archivo
+        self.cargar()
+
+    def guardar(self):
+        """Guarda el inventario en un archivo JSON"""
+        try:
+            with open(self.archivo, "w", encoding="utf-8") as f:
+                json.dump([a.to_dict() for a in self.lista], f, indent=4, ensure_ascii=False)
+            print("✔ Inventario guardado en archivo.")
+        except PermissionError:
+            print("✗ No tienes permisos para escribir en el archivo.")
+        except Exception as e:
+            print(f"✗ Error al guardar: {e}")
+
+    def cargar(self):
+        """Carga el inventario desde un archivo JSON"""
+        if not os.path.exists(self.archivo):
+            print("➜ No existe archivo de inventario, se creará uno nuevo.")
+            self.guardar()
+            return
+        try:
+            with open(self.archivo, "r", encoding="utf-8") as f:
+                datos = json.load(f)
+                self.lista = [Articulo.from_dict(d) for d in datos]
+            print(f"✔ Inventario cargado ({len(self.lista)} productos).")
+        except json.JSONDecodeError:
+            print("⚠ Archivo de inventario corrupto. Se reiniciará vacío.")
+            self.lista = []
+            self.guardar()
+        except PermissionError:
+            print("✗ No tienes permisos para leer el archivo.")
+        except Exception as e:
+            print(f"✗ Error al cargar: {e}")
+
+    # Agregar producto
+    def registrar(self, articulo):
+        if any(a.codigo == articulo.codigo for a in self.lista):
+            print("✗ Código repetido")
+        else:
+            self.lista.append(articulo)
+            print("✔ Registrado")
+            self.guardar()
+
+    # Eliminar producto
+    def borrar(self, codigo):
+        for a in self.lista:
+            if a.codigo == codigo:
+                self.lista.remove(a)
+                print("✔ Borrado")
+                self.guardar()
+                return
+        print("✗ No encontrado")
+
+    # Modificar cantidad o precio
+    def modificar(self, codigo, stock=None, precio=None):
+        for a in self.lista:
+            if a.codigo == codigo:
+                if stock is not None: a.stock = stock
+                if precio is not None: a.precio = precio
+                print("✔ Modificado")
+                self.guardar()
+                return
+        print("✗ No encontrado")
+
+    # Buscar por nombre
+    def buscar(self, texto):
+        resultados = [a for a in self.lista if texto.lower() in a.nombre.lower()]
+        print(*[x.mostrar() for x in resultados] if resultados else ["No encontrado"], sep="\n")
+
+    # Mostrar todos los productos
+    def ver(self):
+        print(*[a.mostrar() for a in self.lista] if self.lista else ["Inventario vacío"], sep="\n")
+
+# Menú principal
+def ejecutar():
+    sistema = SistemaInventario()
+    while True:
+        print("\n1.Registrar \n2.Borrar \n3.Modificar \n4.Buscar \n5.Ver \n6.Salir")
+        opcion = input("Opción: ")
+
+        if opcion == "1":
+            try:
+                codigo = input("Código: ")
+                nombre = input("Nombre: ")
+                stock = int(input("Stock: "))
+                precio = float(input("Precio: "))
+                sistema.registrar(Articulo(codigo, nombre, stock, precio))
+            except ValueError:
+                print("✗ Cantidad o precio inválidos")
+
+        elif opcion == "2":
+            sistema.borrar(input("Código: "))
+
+        elif opcion == "3":
+            codigo = input("Código: ")
+            stock = input("Nuevo stock (deja vacío si no cambia): ")
+            precio = input("Nuevo precio (deja vacío si no cambia): ")
+            try:
+                sistema.modificar(
+                    codigo,
+                    int(stock) if stock else None,
+                    float(precio) if precio else None
+                )
+            except ValueError:
+                print("✗ Stock o precio inválido")
+
+        elif opcion == "4":
+            sistema.buscar(input("Producto a buscar: "))
+
+        elif opcion == "5":
+            sistema.ver()
+
+        elif opcion == "6":
+            print("Saliendo...")
+            break
+
+        else:
+            print("Opción inválida")
+
+# Ejecutamos el programa
+if __name__ == "__main__":
+    ejecutar()
