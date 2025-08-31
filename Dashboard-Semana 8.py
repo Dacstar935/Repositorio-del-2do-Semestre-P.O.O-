@@ -31,7 +31,8 @@ def mostrar_menu():
     '6': 'Construcores y destructores - semana 7/Constructores y Destructores - Deber.py',
         '6.1': 'Construcores y destructores - semana 7/perro.txt',
     '7': 'Gestion de inventarios/Gestion de inventarios semana 9.py',
-    '8': 'Manipulación de archivos y manejo de excepciones- Semana 10/Manipulación de archivos y manejo de excepciones - semana 10.py'
+    '8': 'Manipulación de archivos y manejo de excepciones- Semana 10/Manipulación de archivos y manejo de excepciones - semana 10.py',
+    '9': 'Fundamentos de colecciones - semana 11/Fundamentos de colecciones.py'
         # Agrega aquí el resto de las rutas de los scripts
     }
 
