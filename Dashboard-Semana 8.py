@@ -33,7 +33,8 @@ def mostrar_menu():
     '7': 'Gestion de inventarios/Gestion de inventarios semana 9.py',
     '8': 'Manipulación de archivos y manejo de excepciones- Semana 10/Manipulación de archivos y manejo de excepciones - semana 10.py',
     '9': 'Fundamentos de colecciones - semana 11/Fundamentos de colecciones.py',
-    '10': 'Utilización de colecciones para la mejora de rendimiento - Semana 12/Utilización de colecciones para la mejora de rendimiento.py'
+    '10': 'Utilización de colecciones para la mejora de rendimiento - Semana 12/Utilización de colecciones para la mejora de rendimiento.py',
+    '11': 'Conceptos fundamentales de interfaces gráficas de usuario - Semana 13/Conceptos fundamentales de interfaces gráficas de usuario.py'
         # Agrega aquí el resto de las rutas de los scripts
     }
 
