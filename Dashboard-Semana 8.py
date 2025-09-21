@@ -34,7 +34,8 @@ def mostrar_menu():
     '8': 'Manipulación de archivos y manejo de excepciones- Semana 10/Manipulación de archivos y manejo de excepciones - semana 10.py',
     '9': 'Fundamentos de colecciones - semana 11/Fundamentos de colecciones.py',
     '10': 'Utilización de colecciones para la mejora de rendimiento - Semana 12/Utilización de colecciones para la mejora de rendimiento.py',
-    '11': 'Conceptos fundamentales de interfaces gráficas de usuario - Semana 13/Conceptos fundamentales de interfaces gráficas de usuario.py'
+    '11': 'Conceptos fundamentales de interfaces gráficas de usuario - Semana 13/Conceptos fundamentales de interfaces gráficas de usuario.py',
+    '12': 'Componentes y contenedores - Semana 14/Componentes y contenedores.py'
         # Agrega aquí el resto de las rutas de los scripts
     }
 
