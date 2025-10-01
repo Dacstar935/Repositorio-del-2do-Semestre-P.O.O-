@@ -36,7 +36,8 @@ def mostrar_menu():
     '10': 'Utilización de colecciones para la mejora de rendimiento - Semana 12/Utilización de colecciones para la mejora de rendimiento.py',
     '11': 'Conceptos fundamentales de interfaces gráficas de usuario - Semana 13/Conceptos fundamentales de interfaces gráficas de usuario.py',
     '12': 'Componentes y contenedores - Semana 14/Componentes y contenedores.py',
-    '13': 'Conceptos fundamentales de manejo de eventos - Semana 15/Conceptos fundamentales de manejo de eventos.py'
+    '13': 'Conceptos fundamentales de manejo de eventos - Semana 15/Conceptos fundamentales de manejo de eventos.py',
+    '14': 'Semana 16 - Tarea Manejadores de eventos/Manejadores de eventos.py'
         # Agrega aquí el resto de las rutas de los scripts
     }
 
